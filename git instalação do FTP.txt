@@ -1,0 +1,24 @@
+Para instalar o proftpd, execute os comandos abaixo (um por vez, como super usuário).
+
+# apt-get update
+# apt-get install proftpd
+
+
+Após sua instalação é necessário configurar a forma no qual o proftpd irá atuar no servidor, para isso, abra o arquivo de configurações.
+
+# nano /etc/proftpd/proftpd.conf
+
+
+Inicialmente será criado o grupo "userftp",
+
+# addgroup userftp
+
+
+Com o usuário e o grupo criado, basta adicionar o usuário ao grupo.
+
+# adduser igor userftp
+
+Por fim o serviço deve ser reiniciado para recarregar as configurações.
+
+#service proftpd restart
+
