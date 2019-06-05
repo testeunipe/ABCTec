@@ -1,0 +1,42 @@
+Quando o servidor estiver pronto, você poderá configurar o banco de dados no qual você armazenará tudo a partir do WordPress. Faça o login no MariaDB como seu usuário root.
+
+# mysql -u root -p
+
+Depois de entrar, crie um usuário comum para o WordPress.
+
+#MariaDB [(nenhuma)]> CREATE USER 'wpuser' @ 'localhost' IDENTIFICADO POR 'userpassword';
+
+Agora, crie seu banco de dados do WordPress.
+
+#MariaDB [(nenhuma)]> CREATE DATABASE wp_database;
+
+Finalmente, grand seu usuário todas as permissões no banco de dados.
+
+#MariaDB [(nenhuma)]> GRANT ALL ON `wp_database`. * TO` wpuser` @ `localhost`;
+
+Liberar seus privilégios e sair.
+
+#MariaDB [(nenhum)]> PRIVILÉGIOS DE FLUSH;
+#MariaDB [(nenhuma)]> sair;
+
+
+Baixe e descompacte o WordPress
+
+Downloads de $ cd
+# wget https://wordpress.org/latest.tar.gz
+
+Descompacte o WordPress usando tar.
+# tar xpf latest.tar.gz
+
+A pasta resultante será wordpress. Ele contém toda a instalação do WordPress. Como e onde você copia depende inteiramente da sua configuração do servidor web. O exemplo fornecido abrange a instalação mais básica possível no Apache.
+# rm -rf / var / www / html
+# cp -r wordpress / var / www / html
+
+
+Se você estiver usando o Nginx, provavelmente só desejará colocar a pasta /var/www/como está e apontar sua configuração para ela. Quando o WordPress estiver onde você quiser, altere as permissões e a propriedade para melhorar a segurança e conceder acesso adequado ao seu servidor.
+# chown -R www-data: www-data / var / www / html
+# find / var / www / html -tipo d -exec chmod 755 {} \;
+# find / var / www / html -tipo f -exec chmod 644 {} \;
+
+
+Certamente, se o seu servidor da Web estiver configurado para ser executado com um usuário diferente, altere a propriedade para esse.
