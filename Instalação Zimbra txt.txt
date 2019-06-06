@@ -1,0 +1,40 @@
+Depois de atualizar o sistema operacional é necessário instalar os pacotes básicos exigidos:
+
+#sudo apt-get install libgmp-dev libidn11 wget nano make netcat sudo sysstat libtool libltdl7-dev build-essential libc6 perl ntp libperl-dev
+libidn11-dev sysstat sqlite3 wget libaio1 resolvconf unzip pax netcat-openbsd –y
+
+Depois de instalar as dependências necessárias precisamos configurar o FQDN no /etc/hosts, adicione a linha abaixo de acordo com seu ambiente.
+
+#ip.do.servidor   mail.seu_dominio.com.br           mail
+
+
+É importante que seja configurado um servidor DNS confiável no sistema, particularmente eu gosto muito do DNS do Google (8.8.8.8 e 8.8.4.4) e do OpenDNS (208.67.222.222 e 208.67.220.220).
+
+Agora iremos baixar o pacote do Zimbra e começar a sua instalação propriamente dita. Baixe o pacote conforme mostrado abaixo:
+
+cd /opt
+#wget https://files.zimbra.com/downloads/8.6.0_GA/zcs-8.6.0_GA_1153.UBUNTU14_64.20141215151116.tgz
+
+
+O download pode demorar um pouco, vai depender da sua conexão, o pacote tem cerca de 700 Mb. Depois de baixado descompacte o pacote:
+
+#tar -xvzf zcs-8.6.0_GA_1153.UBUNTU14_64.20141215151116.tgz && cd zcs-*
+
+Para instalar o Zimbra execute o seguinte comando:
+
+#sudo ./install
+
+
+Depois de concordar com a modificação do sistema, o assistente de instalação irá apresentar um erro sobre o MX do domínio, informe o domínio e pressione enter.
+
+DNS ERROR resolving MX for mail.seu_dominio.com.br
+It is suggested that the domain name have an MX record configured in DNS
+Change domain name? [Yes]
+Create domain: [mail.seu_dominio.com.br] seu_dominio.com.br
+
+
+Depois da instalação concluída é hora de verificar se tudo está rodando e acesso nosso webmail.
+
+#su – zimbra
+#zmcontrol status
+
